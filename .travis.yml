@@ -20,5 +20,7 @@ after_success:
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
     docker tag erikdevries/baseimage erikdevries/baseimage:latest
+    docker tag erikdevries/baseimage erikdevries/baseimage:$TRAVIS_BUILD_NUMBER
+
     docker push erikdevries/baseimage
   fi
