@@ -1,0 +1,24 @@
+sudo: required
+
+services:
+- docker
+
+language: bash
+
+branches:
+  only:
+  - master
+
+script:
+  # Build X86 docker image
+  - docker build -f ./x86/Dockerfile -t erikdevries/baseimage .
+
+after_success:
+# push image
+- >
+  if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+
+    docker tag erikdevries/baseimage erikdevries/baseimage:latest
+    docker push erikdevries/baseimage
+  fi
