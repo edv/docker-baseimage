@@ -2,7 +2,9 @@ FROM arm32v6/alpine:3.7
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 # qemu arm static binary
-COPY ./arm/qemu-arm-static /usr/bin/qemu-arm-static
+ADD https://github.com/multiarch/qemu-user-static/releases/download/v2.11.0/qemu-arm-static.tar.gz /tmp/
+RUN tar xzf /tmp/qemu-arm-static.tar.gz -C /usr/bin/ && \
+    rm /tmp/qemu-arm-static.tar.gz
 
 # root filesystem
 COPY rootfs /
