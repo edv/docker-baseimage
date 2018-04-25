@@ -1,6 +1,7 @@
 FROM arm32v6/alpine:3.7
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
+# qemu arm static binary
 COPY ./arm/qemu-arm-static /usr/bin/qemu-arm-static
 
 # root filesystem
