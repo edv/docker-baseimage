@@ -20,9 +20,9 @@ RUN apk -U update && \
 
 # create default user / group and folders
 RUN groupadd -g 1000 abc && \
- useradd -u 1000 -g abc -d /app -s /bin/false abc && \
- mkdir -p \
-	/app \
-	/config
+    useradd -u 1000 -g abc -d /app -s /bin/false abc && \
+    mkdir -p \
+	    /app \
+	    /config
 
 ENTRYPOINT ["/init"]
