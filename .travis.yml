@@ -16,6 +16,7 @@ script:
   # Build X86 docker image
   - docker build -f ./x86/Dockerfile -t erikdevries/baseimage .
   # Build ARM docker image
+  - cp /usr/bin/qemu-arm-static arm/
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - docker build -f ./arm/Dockerfile -t erikdevries/rpi-baseimage .
 
