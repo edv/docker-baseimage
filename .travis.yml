@@ -10,6 +10,7 @@ branches:
   - master
 
 before_script:
+  - sudo apt update
   - sudo apt --yes --no-install-recommends install binfmt-support qemu-user-static
 
 script:
