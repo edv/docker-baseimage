@@ -9,9 +9,15 @@ branches:
   only:
   - master
 
+before_script:
+  - sudo apt --yes --no-install-recommends install binfmt-support qemu-user-static
+
 script:
   # Build X86 docker image
   - docker build -f ./x86/Dockerfile -t erikdevries/baseimage .
+  # Build ARM docker image
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - docker build -f ./arm/Dockerfile -t erikdevries/rpi-baseimage .
 
 after_success:
 # push image
@@ -21,6 +27,9 @@ after_success:
 
     docker tag erikdevries/baseimage erikdevries/baseimage:latest
     docker tag erikdevries/baseimage erikdevries/baseimage:$TRAVIS_BUILD_NUMBER
-
     docker push erikdevries/baseimage
+
+    docker tag erikdevries/rpi-baseimage erikdevries/rpi-baseimage:latest
+    docker tag erikdevries/rpi-baseimage erikdevries/rpi-baseimage:$TRAVIS_BUILD_NUMBER
+    docker push erikdevries/rpi-baseimage
   fi
