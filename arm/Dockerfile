@@ -3,7 +3,7 @@ MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 # qemu arm static binary
 ADD https://github.com/multiarch/qemu-user-static/releases/download/v2.11.0/qemu-arm-static.tar.gz /tmp/
-RUN tar xzf /tmp/qemu-arm-static.tar.gz -C /usr/bin/
+RUN tar xzf /tmp/qemu-arm-static.tar.gz
 
 # root filesystem
 COPY rootfs /
