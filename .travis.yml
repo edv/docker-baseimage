@@ -13,6 +13,7 @@ branches:
 script:
   # Build X86 docker image
   - docker build -f ./x86/Dockerfile -t erikdevries/baseimage .
+
   # Build ARM docker image
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - mkdir tmp
