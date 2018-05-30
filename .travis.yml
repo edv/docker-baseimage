@@ -1,4 +1,5 @@
-sudo: required
+sudo: false
+dist: trusty
 
 services:
 - docker
@@ -9,16 +10,18 @@ branches:
   only:
   - master
 
-before_script:
-  - sudo apt update
-  - sudo apt --yes --no-install-recommends install binfmt-support qemu-user-static
-
 script:
   # Build X86 docker image
   - docker build -f ./x86/Dockerfile -t erikdevries/baseimage .
+
   # Build ARM docker image
-  - cp /usr/bin/qemu-arm-static arm/
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - mkdir tmp
+  - >
+    pushd tmp &&
+    curl -L -o qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v2.12.0/qemu-arm-static.tar.gz &&
+    tar xzf qemu-arm-static.tar.gz &&
+    popd
   - docker build -f ./arm/Dockerfile -t erikdevries/rpi-baseimage .
 
 after_success:
