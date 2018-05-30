@@ -3,7 +3,6 @@ MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 # qemu arm static binary
 ADD https://github.com/multiarch/qemu-user-static/releases/download/v2.12.0/qemu-arm-static /usr/bin/
-RUN chmod +x /usr/bin/qemu-arm-static
 
 # root filesystem
 COPY rootfs /
@@ -21,10 +20,6 @@ RUN apk -U update && \
 # s6 overlay
 RUN curl -L https://github.com/just-containers/s6-overlay/releases/download/v1.21.4.0/s6-overlay-armhf.tar.gz \
     | tar -xzC /
-
-# qemu arm static binary
-#RUN curl -L https://github.com/multiarch/qemu-user-static/releases/download/v2.11.0/qemu-arm-static.tar.gz \
-#    | tar -xzC /usr/bin/
 
 # create default user / group and folders
 RUN groupadd -g 1000 abc && \
