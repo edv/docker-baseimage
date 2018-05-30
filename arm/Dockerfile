@@ -1,6 +1,9 @@
 FROM arm32v6/alpine:3.7
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
+# qemu arm static binary
+ADD https://github.com/multiarch/qemu-user-static/releases/download/v2.11.0/qemu-arm-static.tar.gz /usr/bin/
+
 # root filesystem
 COPY rootfs /
 
@@ -19,8 +22,8 @@ RUN curl -L https://github.com/just-containers/s6-overlay/releases/download/v1.2
     | tar -xzC /
 
 # qemu arm static binary
-RUN curl -L https://github.com/multiarch/qemu-user-static/releases/download/v2.11.0/qemu-arm-static.tar.gz \
-    | tar -xzC /usr/bin/
+#RUN curl -L https://github.com/multiarch/qemu-user-static/releases/download/v2.11.0/qemu-arm-static.tar.gz \
+#    | tar -xzC /usr/bin/
 
 # create default user / group and folders
 RUN groupadd -g 1000 abc && \
