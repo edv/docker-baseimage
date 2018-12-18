@@ -1,4 +1,4 @@
-FROM arm32v6/alpine:3.7
+FROM arm32v6/alpine:3.8
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 # qemu arm static binary
