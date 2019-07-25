@@ -10,6 +10,18 @@ This setup is inspired by the fine work done by `linuxserver.io` and `hypriot`
 
 This image should be used as the base image for new custom images. See `https://github.com/just-containers/s6-overlay` for more information about the S6 overlay system.
 
+## Build image locally
+
+For **X86** based images use the following:
+```
+docker build -f ./x86/Dockerfile -t baseimage .
+```
+
+For **ARM** (e.g. Raspberry Pi) based images use the following:
+```
+docker build -f ./arm/Dockerfile -t rpi-baseimage .
+```
+
 ## Use as base image
 
 For **X86** based images use the following:
