@@ -1,7 +1,7 @@
 .PHONY: build
 build:
 	mkdir -p tmp
-	curl -L -o tmp/qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v5.0.0-2/qemu-arm-static.tar.gz
+	curl -L -o tmp/qemu-arm-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/v5.1.0-5/qemu-arm-static.tar.gz
 	tar -C ./tmp -xzf tmp/qemu-arm-static.tar.gz
 	docker run --rm --privileged multiarch/qemu-user-static:register --reset
 	docker build -f ./arm/Dockerfile -t erikdevries/rpi-baseimage .
