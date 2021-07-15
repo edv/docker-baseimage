@@ -1,4 +1,4 @@
-FROM arm32v6/alpine:3.12
+FROM arm32v6/alpine:3.14
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 # qemu arm static binary
@@ -18,7 +18,7 @@ RUN apk -U update && \
         curl
 
 # s6 overlay
-RUN curl -L https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.0/s6-overlay-armhf.tar.gz \
+RUN curl -L https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-armhf.tar.gz \
     | tar -xzC /
 
 # create default user / group and folders
