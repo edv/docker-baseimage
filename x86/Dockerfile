@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.14
 MAINTAINER Erik de Vries <docker@erikdevries.nl>
 
 # root filesystem
@@ -15,7 +15,7 @@ RUN apk -U update && \
         curl
 
 # s6 overlay
-RUN curl -L https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.0/s6-overlay-amd64.tar.gz \
+RUN curl -L https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-amd64.tar.gz \
     | tar -xzC /
 
 # create default user / group and folders
